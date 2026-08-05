@@ -1,5 +1,7 @@
 <?php
-     header("Access-Control-Allow-Origin: http://localhost:5173");
+     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+     header("Access-Control-Allow-Headers: Content-Type");
+     header("Access-Control-Allow-Origin: *");
      header("Content-Type:application/json");
      require('../config/db.php');
 
@@ -11,9 +13,9 @@
      $description=$data['description'];
 
      $sql="INSERT INTO notes(title,description)
-            VALUES($title,$description); ";
+            VALUES( '$title','$description'); ";
 
-     $result=mysqli_query($conn,$sql);
+     $result=mysqli_query($myconn,$sql);
 
      if($result){
         $id=mysqli_insert_id($myconn);
